@@ -56,7 +56,7 @@ public class MvtParsing {
 			e.printStackTrace();  
 			}  
 			
-			
+		
 			try   
 			{  
 			//creating a constructor of file class and parsing an XML file  
@@ -328,6 +328,13 @@ public class MvtParsing {
 
 	    	          if ("IEvent_Rule".equals(childNode.getNodeName())) {
 	    			       System.out.println(childList.item(j).getNodeName());
+	    			       if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+	    		                Element element1 = (Element) childNode;
+	    		        		System.out.println("Domain: "+ element1.getAttribute("Domain"));	        		
+	    		        		System.out.println("Phase: "+ element1.getAttribute("Phase"));	        		
+
+	    			       }
 	    			       
 	    			       NodeList firstList = childList.item(j).getChildNodes();
 	   	                for (int i = 0;i<firstList.getLength();i++) {
@@ -355,7 +362,7 @@ public class MvtParsing {
 	    		    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
 
 	    		    	                Element element2 = (Element) second;
-	    	    	 	        		System.out.println("Code"+ element2.getAttribute("Code"));
+	    	    	 	        		System.out.println("Code: "+ element2.getAttribute("Code"));
 	    		    	        		}
 	    		                	}
 	    	    	 	        		
@@ -411,23 +418,120 @@ public class MvtParsing {
 			System.out.println("Final_Aggregated_Segment: "+ eElement.getAttribute("Final_Aggregated_Segment")); 
 
 			
+			 NodeList childList = nodeList.item(itr).getChildNodes();
+		        for (int j = 0; j < childList.getLength(); j++) {
+		            Node childNode = childList.item(j);
+
+		            if ("Criteria".equals(childNode.getNodeName())) {
+		                System.out.println(childList.item(j).getNodeName());
+		                Element element1 = (Element) childNode;
+		        		System.out.println("Rank: "+ element1.getAttribute("Rank"));
+		            }
 			
-			
-	          NodeList nodeList1 = doc.getDocumentElement().getChildNodes();
-	          for (int i = 0; i < nodeList1.getLength(); i++) {
-	               Node node1 = nodeList.item(i);
-	  
-	               if (node1.getNodeType() == Node.ELEMENT_NODE) {
-	                    Element elem = (Element) node;
-	               }
-	          }
-			
-			
-			
-			
+		        		 NodeList firstList = childList.item(j).getChildNodes();
+		   	                for (int i = 0;i<firstList.getLength();i++) {
+		   	                	
+		   	                	Node first = firstList.item(i);
+		   	                	
+		   	                	if ("Position".equals(first.getNodeName())) {
+		   	    	                System.out.println(firstList.item(i).getNodeName());
+		   	    	                
+		   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+		   	    	                Element element1 = (Element) first;
+		       	 	        		System.out.println("Position: "+ element1.getElementsByTagName("Position").item(0).getTextContent());
 			
 			
 			} 
+		   	                	}
+		   	    	        		if ("Length".equals(first.getNodeName())) {
+			   	    	                System.out.println(firstList.item(i).getNodeName());
+			   	    	                
+			   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+			   	    	                Element element1 = (Element) first;
+			       	 	        		System.out.println("Length: "+ element1.getElementsByTagName("Length").item(0).getTextContent());
+				
+			   	    	        		}
+				} 
+			   	    	        		if ("Type".equals(first.getNodeName())) {
+				   	    	                System.out.println(firstList.item(i).getNodeName());
+				   	    	                
+				   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+				   	    	                Element element1 = (Element) first;
+				       	 	        		System.out.println("Type: "+ element1.getElementsByTagName("Type").item(0).getTextContent());
+					
+
+		   	    	        		
+				   	    	        		}
+			   	    	        		}
+		   	                }
+		        }
+			}
+		   	             NodeList childList = nodeList.item(itr).getChildNodes();
+		 		        for (int j = 0; j < childList.getLength(); j++) {
+		 		            Node childNode = childList.item(j);
+
+		 		            if ("Aggregated_Field".equals(childNode.getNodeName())) {
+		 		                System.out.println(childList.item(j).getNodeName());
+		 		              
+		 		            }   
+		 		           NodeList firstList = childList.item(j).getChildNodes();
+		   	                for (int i = 0;i<firstList.getLength();i++) {
+		   	                	
+		   	                	Node first = firstList.item(i);
+		   	                	
+		   	                	if ("Position".equals(first.getNodeName())) {
+		   	    	                System.out.println(firstList.item(i).getNodeName());
+		   	    	                
+		   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+		   	    	                Element element1 = (Element) first;
+		       	 	        		System.out.println("Position: "+ element1.getElementsByTagName("Position").item(0).getTextContent());
+			
+		   	    	        		}
+		       	 	        	if ("Length".equals(first.getNodeName())) {
+		   	    	                System.out.println(firstList.item(i).getNodeName());
+		   	    	                
+		   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+		   	    	                Element element1 = (Element) first;
+		       	 	        		System.out.println("Length: "+ element1.getElementsByTagName("Length").item(0).getTextContent());
+			} 
+		   	    	        		
+		   	    	        		if ("Type".equals(first.getNodeName())) {
+			   	    	                System.out.println(firstList.item(i).getNodeName());
+			   	    	                
+			   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+			   	    	                Element element1 = (Element) first;
+			       	 	        		System.out.println("Type: "+ element1.getElementsByTagName("Type").item(0).getTextContent());
+				} 
+			   	    	        		if ("Operator".equals(first.getNodeName())) {
+				   	    	                System.out.println(firstList.item(i).getNodeName());
+				   	    	                
+				   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+				   	    	                Element element1 = (Element) first;
+				       	 	        		System.out.println("Operator: "+ element1.getElementsByTagName("Operator").item(0).getTextContent());
+					} 	 
+				   	    	        		if ("Printing".equals(first.getNodeName())) {
+					   	    	                System.out.println(firstList.item(i).getNodeName());
+					   	    	                
+					   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+					   	    	                Element element1 = (Element) first;
+					       	 	        		System.out.println("Printing: "+ element1.getElementsByTagName("Printing").item(0).getTextContent());
+						} 	        		
+			
+			}
+			}
+			}
+			}
+		   	                	}
+		   	                }
+		 		        }
 			}
 			}
 			catch (Exception e)   
@@ -460,11 +564,69 @@ public class MvtParsing {
 			System.out.println("Name: "+ eElement.getAttribute("Name")); 
 			System.out.println("Start: "+ eElement.getAttribute("Start")); 
 			System.out.println("End: "+ eElement.getAttribute("End")); 
-			System.out.println("Final_Aggregated_Segment: "+ eElement.getAttribute("Financial_Tag")); 
+			System.out.println("Detailed_Application_Level: "+ eElement.getAttribute("Detailed_Application_Level")); 
+			System.out.println("Aggregated_Application_Level: "+ eElement.getAttribute("Aggregated_Application_Level")); 
 
+			
+			
+			
+			 NodeList childList = nodeList.item(itr).getChildNodes();
+		        for (int j = 0; j < childList.getLength(); j++) {
+		            Node childNode = childList.item(j);
+
+		            if ("Criteria".equals(childNode.getNodeName())) {
+		                System.out.println(childList.item(j).getNodeName());
+		                Element element1 = (Element) childNode;
+		        		System.out.println("Rank: "+ element1.getAttribute("Rank"));
+		            }
+			
+		        		 NodeList firstList = childList.item(j).getChildNodes();
+		   	                for (int i = 0;i<firstList.getLength();i++) {
+		   	                	
+		   	                	Node first = firstList.item(i);
+		   	                	
+		   	                	if ("Position".equals(first.getNodeName())) {
+		   	    	                System.out.println(firstList.item(i).getNodeName());
+		   	    	                
+		   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+		   	    	                Element element1 = (Element) first;
+		       	 	        		System.out.println("Position: "+ element1.getElementsByTagName("Position").item(0).getTextContent());
+			
+			
+			} 
+		   	                	}
+		   	    	        		if ("Length".equals(first.getNodeName())) {
+			   	    	                System.out.println(firstList.item(i).getNodeName());
+			   	    	                
+			   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+			   	    	                Element element1 = (Element) first;
+			       	 	        		System.out.println("Length: "+ element1.getElementsByTagName("Length").item(0).getTextContent());
+				
+			   	    	        		}
+				} 
+			   	    	        		if ("Type".equals(first.getNodeName())) {
+				   	    	                System.out.println(firstList.item(i).getNodeName());
+				   	    	                
+				   	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+				   	    	                Element element1 = (Element) first;
+				       	 	        		System.out.println("Type: "+ element1.getElementsByTagName("Type").item(0).getTextContent());
+					
+
+		   	    	        		
+				   	    	        		}
+			   	    	        		}
+		   	                }
+		        }
+			}
 			}  
-			}
-			}
+			
+			
+}
+
+
 			catch (Exception e)   
 			{  
 			e.printStackTrace();  
@@ -583,14 +745,21 @@ public class MvtParsing {
 			
 			NodeList nodeList = doc.getElementsByTagName("Transformation_Rule"); 
 			// nodeList is not iterable, so we are using for loop  
+			for (int itr = 0; itr < nodeList.getLength(); itr++)   
+			{  
+			Node node = nodeList.item(itr);  
+			System.out.println("\nNode Name :" + node.getNodeName());  
 			parseTransformationRules(nodeList);
+
 			}
+			}
+			
 			catch (Exception e)   
 			{  
 			e.printStackTrace();  
-			}  
-			
-			
+			} 
+		
+
 			try   
 			{  
 			//creating a constructor of file class and parsing an XML file  
@@ -639,7 +808,8 @@ public class MvtParsing {
 	NodeList nodeList = doc.getElementsByTagName("Variable"); 
 	// nodeList is not iterable, so we are using for loop  
 	for (int itr = 0; itr < nodeList.getLength(); itr++)   
-	{  
+	{ 
+		
 	Node node = nodeList.item(itr);  
 	System.out.println("\nNode Name :" + node.getNodeName());  
 	if (node.getNodeType() == Node.ELEMENT_NODE)   
@@ -696,6 +866,7 @@ public class MvtParsing {
 	 * @throws IOException 
 	 * @throws SAXException 
 	 */
+		
 	private static void parseTransformationRules(NodeList nodeList) throws ParserConfigurationException, SAXException, IOException {
 		for (int itr = 0; itr < nodeList.getLength(); itr++)   
 		{  
@@ -746,13 +917,13 @@ public class MvtParsing {
 	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
 
 	    	                Element element1 = (Element) first;
-    	 	        		System.out.println("Name: "+ element1.getAttribute("Name"));
-    	 	        		System.out.println("Label: "+ element1.getAttribute("Label"));
-    	 	        		System.out.println("Position: "+ element1.getAttribute("Position"));
-    	 	        		System.out.println("Length: "+ element1.getAttribute("Length"));
-    	 	        		System.out.println("Type: "+ element1.getAttribute("Type"));
-    	 	        		System.out.println("Decimal_Number: "+ element1.getAttribute("Decimal_Number"));
-    	 	        		System.out.println("Test_Code: "+ element1.getAttribute("Test_Code"));	
+		 	        		System.out.println("Name: "+ element1.getAttribute("Name"));
+		 	        		System.out.println("Label: "+ element1.getAttribute("Label"));
+		 	        		System.out.println("Position: "+ element1.getAttribute("Position"));
+		 	        		System.out.println("Length: "+ element1.getAttribute("Length"));
+		 	        		System.out.println("Type: "+ element1.getAttribute("Type"));
+		 	        		System.out.println("Decimal_Number: "+ element1.getAttribute("Decimal_Number"));
+		 	        		System.out.println("Test_Code: "+ element1.getAttribute("Test_Code"));	
 	                	}
 	    	                }
 	    	                
@@ -781,33 +952,33 @@ public class MvtParsing {
 	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
 
 	    	                Element element1 = (Element) first;
-    	 	        		System.out.println("Code: "+ element1.getAttribute("Code"));
-    	 	        		System.out.println("Output_Number: "+ element1.getAttribute("Output_Number"));
-    	 	        		System.out.println("Condition: "+ element1.getAttribute("Condition"));
-    	 	        		System.out.println("Update_Date: "+ element1.getAttribute("Update_Date"));
-    	 	        		System.out.println("Cyclic_Output: "+ element1.getAttribute("Cyclic_Output"));
-    	 	        		System.out.println("OutputInit: "+ element1.getAttribute("OutputInit"));
-    	 	        		System.out.println("OutputMemo: "+ element1.getAttribute("OutputMemo"));	
-    	 	        		System.out.println("OutputOccurs: "+ element1.getAttribute("OutputOccurs"));	
+		 	        		System.out.println("Code: "+ element1.getAttribute("Code"));
+		 	        		System.out.println("Output_Number: "+ element1.getAttribute("Output_Number"));
+		 	        		System.out.println("Condition: "+ element1.getAttribute("Condition"));
+		 	        		System.out.println("Update_Date: "+ element1.getAttribute("Update_Date"));
+		 	        		System.out.println("Cyclic_Output: "+ element1.getAttribute("Cyclic_Output"));
+		 	        		System.out.println("OutputInit: "+ element1.getAttribute("OutputInit"));
+		 	        		System.out.println("OutputMemo: "+ element1.getAttribute("OutputMemo"));	
+		 	        		System.out.println("OutputOccurs: "+ element1.getAttribute("OutputOccurs"));	
 
 	    	        	
-    	 	        		NodeList secondList = firstList.item(i).getChildNodes();
-    		                for (int n = 0;n<secondList.getLength();n++) {
-    		                	
-    		                	Node second = secondList.item(n);
-    		                	
-    		                	if ("Mapping".equals(second.getNodeName())) {
-    		    	                System.out.println(secondList.item(i).getNodeName());
-    		    	                
-    		    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+		 	        		NodeList secondList = firstList.item(i).getChildNodes();
+			                for (int n = 0;n<secondList.getLength();n++) {
+			                	
+			                	Node second = secondList.item(n);
+			                	
+			                	if ("Mapping".equals(second.getNodeName())) {
+			    	                System.out.println(secondList.item(i).getNodeName());
+			    	                
+			    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
 
-    		    	                Element element2 = (Element) second;
-    	    	 	        		System.out.println("Name: "+ element2.getAttribute("Name"));
-    	    	 	        		System.out.println("Expression: "+ element2.getAttribute("Expression"));
-    		    	        		
-    		                	}
-    		    	                }
-    		                }
+			    	                Element element2 = (Element) second;
+		    	 	        		System.out.println("Name: "+ element2.getAttribute("Name"));
+		    	 	        		System.out.println("Expression: "+ element2.getAttribute("Expression"));
+			    	        		
+			                	}
+			    	                }
+			                }
 	    	        		}
 	                	}
 	                }
@@ -827,31 +998,36 @@ public class MvtParsing {
 	    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
 
 	    	                Element element1 = (Element) first;
-    	 	        		System.out.println("Number: "+ element1.getAttribute("Number"));
-    	 	        		System.out.println("Priority_Code: "+ element1.getAttribute("Priority_Code"));
-    	 	        		System.out.println("Update_Date: "+ element1.getAttribute("Update_Date"));
-    	 	        		System.out.println("Update_Date: "+ element1.getAttribute("Update_Date"));
-    	 	        		System.out.println("Exclusive_Code: "+ element1.getAttribute("Exclusive_Code"));
-    	 	        		
-    	 	        		
-    	 	        		NodeList secondList = firstList.item(i).getChildNodes();
-    		                for (int n = 0;n<secondList.getLength();n++) {
-    		                	
-    		                	Node second = secondList.item(n);
-    		                	
-    		                	if ("Output_Number".equals(second.getNodeName())) {
-    		    	                System.out.println(secondList.item(i).getNodeName());
-    		    	                
-    		    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+		 	        		System.out.println("Number: "+ element1.getAttribute("Number"));
+		 	        		System.out.println("Priority_Code: "+ element1.getAttribute("Priority_Code"));
+		 	        		System.out.println("Condition: "+ element1.getAttribute("Condition"));
+		 	        		System.out.println("Update_Date: "+ element1.getAttribute("Update_Date"));
+		 	        		System.out.println("Exclusive_Code: "+ element1.getAttribute("Exclusive_Code"));
 
-    		    	                Element element2 = (Element) second;
-    	    	 	        		System.out.println("Output_Number"+ element2.getAttribute("Output_Number"));
-    		    	        		
-    		                	}
-    		    	                }
-    		                	}
-    		    	                }
+		 	        		
+		 	        		NodeList secondList = firstList.item(i).getChildNodes();
+			                for (int n = 0;n<secondList.getLength();n++) {
+			                	
+			                	Node second = secondList.item(n);
+			                	
+			                	if ("Output_Number".equals(second.getNodeName())) {
+			    	                System.out.println(secondList.item(i).getNodeName());
+			    	               
+			    	        		if (childNode.getNodeType() == Node.ELEMENT_NODE) {  
+
+			    	                Element element2 = (Element) second;
+		    	 	        	    System.out.println("Output_Number : "   + element2.getTextContent());
+
+			    	        		}
+			    	                }
+			    	               
+			    	            
+			                	}
+			                	
+			    	                }
+			    	                
 	                	}
+	                	
 	    	                }
 	                
 	                
@@ -859,21 +1035,11 @@ public class MvtParsing {
 	            
 	                
 	            }
-	                
-	        		
-	            }
 	            
-	            
-	            
-	            
+	        }
 	        
-	            
-	            }
-	    			
-	    	        
-	            
-	        
-	            
+		}
+		
 		}
 		
 		
